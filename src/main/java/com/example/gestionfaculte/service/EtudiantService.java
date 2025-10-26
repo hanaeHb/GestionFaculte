@@ -2,7 +2,6 @@ package com.example.gestionfaculte.service;
 
 import com.example.gestionfaculte.dto.RequestEtudiantDTO;
 import com.example.gestionfaculte.dto.ResponceEtudiantDTO;
-import com.example.gestionfaculte.entity.Filiere;
 
 import java.util.List;
 
@@ -12,5 +11,4 @@ public interface EtudiantService {
     public ResponceEtudiantDTO GETEtudiantById(Integer id);
     public ResponceEtudiantDTO UPDATEEtudiant(Integer id , RequestEtudiantDTO requestEtudiantDTO);
     public void DELETEEtudiantBYID(Integer id);
-    Filiere getFiliereByEtudiantId(Integer etudiantId);
 }

@@ -66,11 +66,4 @@ public class EtudiantServiceImpl implements EtudiantService {
     public void DELETEEtudiantBYID(Integer id) {
         etudiantRepository.deleteById(id);
     }
-    @Override
-    public Filiere getFiliereByEtudiantId(Integer etudiantId) {
-        Etudiant etudiant = etudiantRepository.findById(etudiantId)
-                .orElseThrow(() -> new RuntimeException("Etudiant introuvable"));
-        return etudiant.getFiliere();
-    }
-
 }
