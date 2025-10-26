@@ -17,6 +17,4 @@ public class Filiere {
     private Integer id;
     private String code;
     private String libelle;
-    @OneToMany(mappedBy = "filiere", cascade = CascadeType.ALL)
-    private List<Etudiant> etudiants;
 }
