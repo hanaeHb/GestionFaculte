@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +26,13 @@ import java.util.List;
                 version = "1.0.0"
         ),
         servers = @Server(
-                url = "http://localhost:8082"
+                url = "http://localhost:8084"
         )
 )
 
 @RestController
 @RequestMapping("/v1/filieres")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApiRestfullFiliere {
 
     private FiliereServiceImpl filiereService;
@@ -60,7 +62,7 @@ public class ApiRestfullFiliere {
             }
     )
 
-    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @PostMapping
     public ResponseEntity<ResponceFiliereDto> add(@RequestBody RequestFiliereDto requestFiliereDto) {
         ResponceFiliereDto responceFiliereDto = filiereService.AddFiliere(requestFiliereDto);
@@ -83,7 +85,7 @@ public class ApiRestfullFiliere {
             }
     )
 
-    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN','SCOPE_USER')")
     @GetMapping
     public ResponseEntity<List<ResponceFiliereDto>> getAll() {
 
@@ -106,7 +108,7 @@ public class ApiRestfullFiliere {
             }
     )
 
-    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN','SCOPE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<ResponceFiliereDto> getFiliereById(@PathVariable Integer id) {
         ResponceFiliereDto responceFiliereDto = filiereService.GETFiliereById(id);
@@ -137,7 +139,7 @@ public class ApiRestfullFiliere {
             }
     )
 
-    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ResponceFiliereDto> update(@PathVariable Integer id,
                                                     @RequestBody RequestFiliereDto requestFiliereDto) {
@@ -155,7 +157,7 @@ public class ApiRestfullFiliere {
             }
     )
 
-    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Integer id) {
         filiereService.DELETEFiliereBYID(id);
