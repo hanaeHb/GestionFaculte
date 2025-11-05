@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class ApiRestfullFiliere {
             }
     )
 
+    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
     @PostMapping
     public ResponseEntity<ResponceFiliereDto> add(@RequestBody RequestFiliereDto requestFiliereDto) {
         ResponceFiliereDto responceFiliereDto = filiereService.AddFiliere(requestFiliereDto);
@@ -81,6 +83,7 @@ public class ApiRestfullFiliere {
             }
     )
 
+    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
     @GetMapping
     public ResponseEntity<List<ResponceFiliereDto>> getAll() {
 
@@ -103,6 +106,7 @@ public class ApiRestfullFiliere {
             }
     )
 
+    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<ResponceFiliereDto> getFiliereById(@PathVariable Integer id) {
         ResponceFiliereDto responceFiliereDto = filiereService.GETFiliereById(id);
@@ -133,6 +137,7 @@ public class ApiRestfullFiliere {
             }
     )
 
+    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ResponceFiliereDto> update(@PathVariable Integer id,
                                                     @RequestBody RequestFiliereDto requestFiliereDto) {
@@ -150,6 +155,7 @@ public class ApiRestfullFiliere {
             }
     )
 
+    @PreAuthorize("hasAuthority('SCOPE _ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Integer id) {
         filiereService.DELETEFiliereBYID(id);
