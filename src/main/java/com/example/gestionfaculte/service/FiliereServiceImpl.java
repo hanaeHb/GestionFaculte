@@ -36,7 +36,7 @@ public class FiliereServiceImpl implements  FiliereService {
         for (Filiere filiere : filieres) {
             FiliereDtos.add(filiereMapper.ENTITY_TO_DTO(filiere));
         }
-        return null;
+        return FiliereDtos;
     }
 
     @Override
